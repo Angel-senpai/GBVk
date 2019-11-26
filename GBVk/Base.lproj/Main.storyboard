@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GBVk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Login" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UQ2-TD-ypf">
+                                <rect key="frame" x="116" y="376" width="182" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="UQ2-TD-ypf" secondAttribute="height" multiplier="91:17" id="wx7-k5-VDs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="username"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f8N-q6-Mj1">
+                                <rect key="frame" x="116" y="435" width="182" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="password"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SVD-F5-gNF">
+                                <rect key="frame" x="116" y="505" width="182" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="SVD-F5-gNF" secondAttribute="height" multiplier="91:15" id="7IK-3s-LEo"/>
+                                </constraints>
+                                <state key="normal" title="Enter"/>
+                                <connections>
+                                    <action selector="buttonTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ScK-4u-cCN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="SVD-F5-gNF" firstAttribute="centerX" secondItem="f8N-q6-Mj1" secondAttribute="centerX" id="RZw-WZ-zuS"/>
+                            <constraint firstItem="SVD-F5-gNF" firstAttribute="top" relation="lessThanOrEqual" secondItem="f8N-q6-Mj1" secondAttribute="bottom" constant="36" id="Uyx-6H-aYR"/>
+                            <constraint firstItem="UQ2-TD-ypf" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="WGa-Mg-pfE"/>
+                            <constraint firstItem="SVD-F5-gNF" firstAttribute="leading" secondItem="f8N-q6-Mj1" secondAttribute="trailing" constant="-182" id="WPG-dv-uYg"/>
+                            <constraint firstItem="f8N-q6-Mj1" firstAttribute="centerX" secondItem="UQ2-TD-ypf" secondAttribute="centerX" id="eFv-eJ-DLr"/>
+                            <constraint firstItem="f8N-q6-Mj1" firstAttribute="width" secondItem="UQ2-TD-ypf" secondAttribute="width" id="eHI-pa-ye6"/>
+                            <constraint firstItem="UQ2-TD-ypf" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-60" id="kx6-ld-OSp"/>
+                            <constraint firstItem="f8N-q6-Mj1" firstAttribute="top" secondItem="UQ2-TD-ypf" secondAttribute="bottom" constant="25" id="lto-xH-DQj"/>
+                            <constraint firstItem="SVD-F5-gNF" firstAttribute="top" secondItem="f8N-q6-Mj1" secondAttribute="bottom" constant="36" id="wm4-AC-iXw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="logginButton" destination="SVD-F5-gNF" id="oQK-gz-yKx"/>
+                        <outlet property="loginBox" destination="UQ2-TD-ypf" id="f7V-bf-Ic6"/>
+                        <outlet property="passwordBox" destination="f8N-q6-Mj1" id="kvV-KO-J2g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>
+        </scene>
+    </scenes>
+</document>
