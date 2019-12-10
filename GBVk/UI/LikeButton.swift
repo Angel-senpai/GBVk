@@ -38,26 +38,34 @@ class LikeButton: UIButton {
     }
 
     private func setupDefault(){
-        setImage(UIImage(named: "heart"), for: .normal)
-        imageView?.backgroundColor = liked ? .red : .gray
+        
+        if liked{
+            setImage(UIImage(named: "liked"), for: .normal)
+            tintColor = .red
+        }else{
+            setImage(UIImage(named: "dislike"), for: .normal)
+            tintColor = .gray
+        }
+        
+        
         setTitle(String(describing: likeCount), for: .normal)
-        tintColor = .red
-        
-        
-        imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-        titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -5)
+        titleEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: -20)
         imageView?.contentMode = .scaleAspectFit
+        
+        
         
     }
     
     private func setLiked(){
         likeCount += 1
-        imageView?.backgroundColor = .red
+        setImage(UIImage(named: "liked"), for: .normal)
+
         tintColor = .red
     }
     private func disableLike(){
         likeCount -= 1
-        imageView?.backgroundColor = .gray
+        setImage(UIImage(named: "dislike"), for: .normal)
+
         tintColor = .gray
     }
 }

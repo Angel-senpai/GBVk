@@ -190,17 +190,37 @@
                                             <rect key="frame" x="20" y="5" width="50" height="50"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="soQ-2u-iHB" customClass="LikeButton" customModule="GBVk" customModuleProvider="target">
+                                            <rect key="frame" x="255" y="15" width="120" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="BPj-PT-nTj"/>
+                                                <constraint firstAttribute="width" secondItem="soQ-2u-iHB" secondAttribute="height" multiplier="20:5" id="NPB-pC-leo"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="liked" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="likeCount">
+                                                    <integer key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="tap:" destination="D5W-hK-TrQ" eventType="touchUpInside" id="ShE-wL-OM6"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Lv2-iq-Q4G" firstAttribute="centerY" secondItem="3pE-RM-wFc" secondAttribute="centerY" id="41y-y0-QIN"/>
+                                        <constraint firstItem="soQ-2u-iHB" firstAttribute="centerY" secondItem="3pE-RM-wFc" secondAttribute="centerY" id="8GD-Bs-IjN"/>
                                         <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="nSa-bv-yhu" secondAttribute="trailing" constant="280" id="KW5-Af-Snn"/>
                                         <constraint firstItem="NSS-WZ-bgC" firstAttribute="top" secondItem="Lv2-iq-Q4G" secondAttribute="top" id="LAa-Mo-bDf"/>
                                         <constraint firstItem="NSS-WZ-bgC" firstAttribute="leading" secondItem="Lv2-iq-Q4G" secondAttribute="leading" id="NsM-Nv-Agi"/>
                                         <constraint firstItem="nSa-bv-yhu" firstAttribute="leading" secondItem="Lv2-iq-Q4G" secondAttribute="trailing" constant="30" id="a9K-6x-WX1"/>
+                                        <constraint firstAttribute="trailing" secondItem="soQ-2u-iHB" secondAttribute="trailing" constant="39" id="bX6-ke-Zj2"/>
                                         <constraint firstItem="NSS-WZ-bgC" firstAttribute="width" secondItem="Lv2-iq-Q4G" secondAttribute="height" multiplier="1:1" id="jgD-ID-ztH"/>
                                         <constraint firstItem="NSS-WZ-bgC" firstAttribute="trailing" secondItem="Lv2-iq-Q4G" secondAttribute="trailing" id="kzE-Ts-9aj"/>
                                         <constraint firstItem="NSS-WZ-bgC" firstAttribute="bottom" secondItem="Lv2-iq-Q4G" secondAttribute="bottom" id="mSo-aq-46W"/>
                                         <constraint firstItem="nSa-bv-yhu" firstAttribute="centerY" secondItem="3pE-RM-wFc" secondAttribute="centerY" id="nqt-54-7jo"/>
+                                        <constraint firstItem="soQ-2u-iHB" firstAttribute="leading" relation="lessThanOrEqual" secondItem="nSa-bv-yhu" secondAttribute="trailing" constant="120" id="zLZ-2c-MOv"/>
                                         <constraint firstItem="Lv2-iq-Q4G" firstAttribute="leading" secondItem="3pE-RM-wFc" secondAttribute="leadingMargin" id="ztH-Yh-exK"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -238,46 +258,26 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="lGd-12-Adc" customClass="PhotoCell" customModule="GBVk" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" reuseIdentifier="PhotoCell" id="lGd-12-Adc" customClass="PhotoCell" customModule="GBVk" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="brf-NC-KuR" customClass="PhotoCell" customModule="GBVk" customModuleProvider="target">
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="brf-NC-KuR" customClass="PhotoCell" customModule="GBVk" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FrT-F1-3qq">
-                                            <rect key="frame" x="0.0" y="0.0" width="180" height="130"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="soQ-2u-iHB" customClass="LikeButton" customModule="GBVk" customModuleProvider="target">
-                                            <rect key="frame" x="60" y="150" width="60" height="20"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="BPj-PT-nTj"/>
-                                                <constraint firstAttribute="width" secondItem="soQ-2u-iHB" secondAttribute="height" multiplier="3:1" id="NPB-pC-leo"/>
-                                            </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="liked" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="likeCount">
-                                                    <integer key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="tap:" destination="lGd-12-Adc" eventType="touchUpInside" id="owU-hc-j36"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="FrT-F1-3qq" secondAttribute="bottom" id="8Ad-pB-nuc"/>
                                         <constraint firstItem="FrT-F1-3qq" firstAttribute="top" secondItem="brf-NC-KuR" secondAttribute="top" id="Bal-zB-f8I"/>
-                                        <constraint firstAttribute="bottom" secondItem="soQ-2u-iHB" secondAttribute="bottom" constant="10" id="HTH-eo-14h"/>
                                         <constraint firstItem="FrT-F1-3qq" firstAttribute="leading" secondItem="brf-NC-KuR" secondAttribute="leading" id="ZRt-rL-SC1"/>
                                         <constraint firstAttribute="trailing" secondItem="FrT-F1-3qq" secondAttribute="trailing" id="ibV-Mo-HYE"/>
-                                        <constraint firstItem="soQ-2u-iHB" firstAttribute="centerX" secondItem="brf-NC-KuR" secondAttribute="centerX" id="lYO-1D-XUM"/>
-                                        <constraint firstItem="soQ-2u-iHB" firstAttribute="top" secondItem="FrT-F1-3qq" secondAttribute="bottom" constant="20" id="vPU-Sa-ZI6"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="180" height="180"/>
                                 <connections>
-                                    <outlet property="button" destination="soQ-2u-iHB" id="R1V-ro-rpa"/>
                                     <outlet property="photoView" destination="FrT-F1-3qq" id="1ig-Fa-GEJ"/>
                                 </connections>
                             </collectionViewCell>

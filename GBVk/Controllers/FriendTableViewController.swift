@@ -9,8 +9,11 @@
 import UIKit
 
 class FriendTableViewController: UITableViewController {
-    
 
+
+    @IBAction func tap(_ sender: Any) {
+        (sender as! LikeButton).like()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,7 +42,6 @@ class FriendTableViewController: UITableViewController {
 
         
         //cell.imageV.image = UIImage(named: list[indexPath.row].userImage)
-        print(UIImage(named: list[indexPath.row].userImage))
         cell.shadowAvatar.image.image = UIImage(named: list[indexPath.row].userImage)
         cell.fLabel.text = list[indexPath.row].userName
         cell.imageV.layer.cornerRadius = cell.imageV.frame.width / 2
