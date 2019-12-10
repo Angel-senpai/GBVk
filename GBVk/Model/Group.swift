@@ -11,13 +11,13 @@ import UIKit
 class Group {
     
     var groupName:String
-    var groupImage:UIImage
+    var groupImage:String
     var isInGroup:Bool
 
-    init( name: String, image: UIImage = #imageLiteral(resourceName: "dog") , inGroup: Bool = false) {
+    init( name: String, strImage: String = "dog" , inGroup: Bool = false) {
         
         groupName = name
-        groupImage = image
+        groupImage = strImage
         isInGroup = inGroup
         
     }

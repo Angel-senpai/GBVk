@@ -32,7 +32,8 @@ class GlobalGroupTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
         
-        cell.groupImageV.image = tableList[indexPath.row].groupImage
+
+        cell.groupImageV.image = UIImage(named: tableList[indexPath.row].groupImage)
         cell.groupLabel.text = tableList[indexPath.row].groupName
         return cell
     }

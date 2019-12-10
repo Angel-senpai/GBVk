@@ -11,8 +11,12 @@ import UIKit
 
 class PhotoCell: UICollectionViewCell  {
     
-
+    @IBAction func tap(_ sender: Any) {
+        self.button.like()
+    }
+    
     @IBOutlet weak var photoView: UIImageView!
+    @IBOutlet weak var button: LikeButton!
     
     override func prepareForReuse() {
         photoView = nil

@@ -16,7 +16,7 @@ class FriendTableViewController: UITableViewController {
 
     }
     
-    var list:[User] = [User(name: "Ivan",image: #imageLiteral(resourceName: "1200px-VK.com-logo.svg")), User(name: "Petya")]
+    var list:[User] = [User(name: "Ivan",strImage: "catWorking"), User(name: "Petya")]
 
     // MARK: - Table view data source
 
@@ -38,7 +38,9 @@ class FriendTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
 
         
-        cell.imageV.image = list[indexPath.row].userImage
+        //cell.imageV.image = UIImage(named: list[indexPath.row].userImage)
+        print(UIImage(named: list[indexPath.row].userImage))
+        cell.shadowAvatar.image.image = UIImage(named: list[indexPath.row].userImage)
         cell.fLabel.text = list[indexPath.row].userName
         cell.imageV.layer.cornerRadius = cell.imageV.frame.width / 2
         cell.imageV.contentMode = .scaleAspectFit
@@ -68,7 +70,7 @@ class FriendTableViewController: UITableViewController {
         }
         delete.backgroundColor = #colorLiteral(red: 0.2656514049, green: 0.5078089237, blue: 0.7403514981, alpha: 1)
         let swipeAction = UISwipeActionsConfiguration(actions: [delete])
-        swipeAction.performsFirstActionWithFullSwipe = false // This is the line which disables full swipe
+        //swipeAction.performsFirstActionWithFullSwipe = false // This is the line which disables full swipe
         return swipeAction
     }
 

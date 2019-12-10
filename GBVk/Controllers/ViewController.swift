@@ -31,7 +31,6 @@ class ViewController: UIViewController {
     
     
     @IBAction func buttonTouch(_ sender: Any){
-        print("touch")
     }
 
 

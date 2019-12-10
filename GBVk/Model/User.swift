@@ -12,11 +12,11 @@ import UIKit
 class User {
     
     var userName: String
-    var userImage: UIImage
+    var userImage: String
     
-    init( name: String, image: UIImage = #imageLiteral(resourceName: "dog")) {
+    init( name: String, strImage: String = "dog") {
         userName = name
-        userImage = image
+        userImage = strImage
     }
     
 }

@@ -23,11 +23,10 @@ class GroupTableViewController: UITableViewController {
     var groupList: [Group] = {
         var tempList: [Group] = []
         let strArr = ["Technologi","News","Memes"]
-        let imageArr = [#imageLiteral(resourceName: "dog"),#imageLiteral(resourceName: "256-2"),#imageLiteral(resourceName: "256"),#imageLiteral(resourceName: "5afdb2146f9f81636eff9fe9")]
+        let imageArr = ["catWorking","dogfacepalm","dogCoffee"]
         
         for _ in 0...20{
-            tempList.append(Group(name: strArr.randomElement() ?? "Test",
-                                  image: imageArr.randomElement() ?? #imageLiteral(resourceName: "dog")))
+            tempList.append(Group(name: strArr.randomElement() ?? "Test",strImage: imageArr.randomElement() ?? "dog"))
         }
         
         return tempList
@@ -67,7 +66,7 @@ class GroupTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
 
-        cell.groupImageV.image = tableList[indexPath.row].groupImage
+        cell.groupImageV.image = UIImage(named:  tableList[indexPath.row].groupImage)
         cell.groupLabel.text = tableList[indexPath.row].groupName
         return cell
     }
@@ -81,10 +80,17 @@ class GroupTableViewController: UITableViewController {
              self.tableView.reloadData()
              completionHandler(true)
          }
+
          delete.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
          let swipeAction = UISwipeActionsConfiguration(actions: [delete])
          swipeAction.performsFirstActionWithFullSwipe = false // This is the line which disables full swipe
          return swipeAction
      }
-
+    
+    
 }
+
+
+
+
+
