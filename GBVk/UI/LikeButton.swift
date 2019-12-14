@@ -49,7 +49,7 @@ class LikeButton: UIButton {
         
         
         setTitle(String(describing: likeCount), for: .normal)
-        titleEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: -20)
+        titleEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: -40)
         imageView?.contentMode = .scaleAspectFit
         
         

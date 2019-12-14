@@ -14,13 +14,16 @@ class PhotoCell: UICollectionViewCell  {
     
     
     @IBAction func tap(_ sender: Any) {
-        print("tap")
+        (sender as! LikeButton).like()
     }
     
     @IBOutlet weak var photoView: UIImageView!
-
+        
     
-    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+    }
     
     override func prepareForReuse() {
         photoView = nil

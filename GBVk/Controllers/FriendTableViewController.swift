@@ -8,24 +8,39 @@
 
 import UIKit
 
+struct Section<T> {
+    var title: String
+    var items: [T]
+}
+
 class FriendTableViewController: UITableViewController {
 
+    var friendSection = [Section<User>]()
+    
+    var list:[User] = [User(firstName: "Ivan",lastName: "Govorunov",age: Date(),strImage: "catWorking"), User(firstName: "Petya",lastName: "Boburov",age: Date())]
 
-    @IBAction func tap(_ sender: Any) {
-        (sender as! LikeButton).like()
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let friendDictionary = Dictionary.init(grouping: list){
+            $0.userConfig.lastName.prefix(1)
+        }
+        
+        friendSection = friendDictionary.map{Section(title: String($0.key), items: $0.value)}
+        friendSection.sort{ $0.title < $1.title }
     }
     
-    var list:[User] = [User(name: "Ivan",strImage: "catWorking"), User(name: "Petya")]
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return friendSection.count
+    }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
+        return friendSection[section].items.count
     }
+    
+    
 
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -33,20 +48,18 @@ class FriendTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    
-    var index = 0
-    
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
 
         
         //cell.imageV.image = UIImage(named: list[indexPath.row].userImage)
-        cell.shadowAvatar.image.image = UIImage(named: list[indexPath.row].userImage)
-        cell.fLabel.text = list[indexPath.row].userName
-        cell.imageV.layer.cornerRadius = cell.imageV.frame.width / 2
-        cell.imageV.contentMode = .scaleAspectFit
-        cell.imageV.layer.masksToBounds = true
+        
+        
+        cell.shadowAvatar.image.image = UIImage(named: friendSection[indexPath.section].items[indexPath.row].userImage)
+        cell.friendLabel.text = friendSection[indexPath.section].items[indexPath.row].fullName
+        cell.friendImageView.layer.cornerRadius = cell.friendImageView.frame.width / 2
+        cell.friendImageView.contentMode = .scaleAspectFit
+        cell.friendImageView.layer.masksToBounds = true
 
         return cell
     }
@@ -60,6 +73,9 @@ class FriendTableViewController: UITableViewController {
         
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return friendSection[section].title
+    }
     
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
