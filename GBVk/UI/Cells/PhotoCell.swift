@@ -25,6 +25,7 @@ class PhotoCell: UICollectionViewCell  {
         
     }
     
+    
     override func prepareForReuse() {
         photoView = nil
     }
