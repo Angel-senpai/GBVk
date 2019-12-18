@@ -375,11 +375,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="none" indentationWidth="10" reuseIdentifier="NewsViewCell" rowHeight="256.33334350585938" id="MMb-jJ-H4V" customClass="NewsViewCell" customModule="GBVk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="256.33334350585938"/>
+                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="none" indentationWidth="10" reuseIdentifier="NewsViewCell" id="MMb-jJ-H4V" customClass="NewsViewCell" customModule="GBVk" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="444.33334350585938"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MMb-jJ-H4V" id="nnB-PW-TnO">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="256.33334350585938"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="444.33334350585938"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dNo-sI-2cW">
@@ -393,13 +393,63 @@
                                             <rect key="frame" x="16" y="10" width="50" height="50"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         </view>
+                                        <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5gl-9o-sXV">
+                                            <rect key="frame" x="16" y="413" width="262" height="30.333333333333314"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYp-6T-Rk1" customClass="LikeButton" customModule="GBVk" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.33333333333331439" width="76.333333333333329" height="30"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="liked" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="likeCount">
+                                                            <integer key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="like:" destination="MMb-jJ-H4V" eventType="touchUpInside" id="wQ7-pO-BVg"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHs-eL-cih" customClass="CommentButton" customModule="GBVk" customModuleProvider="target">
+                                                    <rect key="frame" x="86.333333333333343" y="0.33333333333331439" width="76.333333333333343" height="30"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="commentCount">
+                                                            <integer key="value" value="2"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="comment" value="NO"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="comment:" destination="MMb-jJ-H4V" eventType="touchUpInside" id="1Tv-Fh-sK1"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3V-PF-UOa" customClass="RepostButton" customModule="GBVk" customModuleProvider="target">
+                                                    <rect key="frame" x="172.66666666666666" y="0.33333333333331439" width="89.333333333333343" height="30"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="reposted" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="repostCount">
+                                                            <integer key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="repost:" destination="MMb-jJ-H4V" eventType="touchUpInside" id="stF-7b-g9z"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgA-CA-grC">
+                                            <rect key="frame" x="74" y="25" width="41.666666666666657" height="20.333333333333329"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="always" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C2z-q3-7J7">
-                                            <rect key="frame" x="16" y="76" width="382" height="150"/>
+                                            <rect key="frame" x="32" y="68" width="325" height="325"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="150" id="xML-fh-JrK"/>
+                                                <constraint firstAttribute="height" constant="325" id="xML-fh-JrK"/>
                                             </constraints>
-                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="E6u-s6-mof">
+                                            <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="E6u-s6-mof">
                                                 <size key="itemSize" width="100" height="100"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -435,81 +485,30 @@
                                                 <outlet property="delegate" destination="nS8-Ey-fWy" id="5yf-Ky-6HD"/>
                                             </connections>
                                         </collectionView>
-                                        <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5gl-9o-sXV">
-                                            <rect key="frame" x="16" y="227" width="262" height="30.333333333333314"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYp-6T-Rk1" customClass="LikeButton" customModule="GBVk" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.33333333333334281" width="76.333333333333329" height="30"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="liked" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="likeCount">
-                                                            <integer key="value" value="1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="like:" destination="MMb-jJ-H4V" eventType="touchUpInside" id="wQ7-pO-BVg"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHs-eL-cih" customClass="CommentButton" customModule="GBVk" customModuleProvider="target">
-                                                    <rect key="frame" x="86.333333333333343" y="0.33333333333334281" width="76.333333333333343" height="30"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="commentCount">
-                                                            <integer key="value" value="2"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="comment" value="NO"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="comment:" destination="MMb-jJ-H4V" eventType="touchUpInside" id="1Tv-Fh-sK1"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3V-PF-UOa" customClass="RepostButton" customModule="GBVk" customModuleProvider="target">
-                                                    <rect key="frame" x="172.66666666666666" y="0.33333333333334281" width="89.333333333333343" height="30"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="reposted" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="repostCount">
-                                                            <integer key="value" value="1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="repost:" destination="MMb-jJ-H4V" eventType="touchUpInside" id="stF-7b-g9z"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgA-CA-grC">
-                                            <rect key="frame" x="74" y="25" width="41.666666666666657" height="20.333333333333329"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="kgy-eB-yl5" firstAttribute="top" secondItem="dNo-sI-2cW" secondAttribute="top" id="4PQ-Ed-k6h"/>
-                                        <constraint firstItem="C2z-q3-7J7" firstAttribute="top" secondItem="dNo-sI-2cW" secondAttribute="bottom" constant="16" id="4fD-oV-WB3"/>
-                                        <constraint firstAttribute="trailing" secondItem="C2z-q3-7J7" secondAttribute="trailing" constant="16" id="6Ql-Lt-LX2"/>
+                                        <constraint firstItem="C2z-q3-7J7" firstAttribute="top" secondItem="dNo-sI-2cW" secondAttribute="bottom" constant="8" id="4fD-oV-WB3"/>
+                                        <constraint firstAttribute="trailing" secondItem="C2z-q3-7J7" secondAttribute="trailing" constant="57" id="6Ql-Lt-LX2"/>
                                         <constraint firstItem="tgA-CA-grC" firstAttribute="leading" secondItem="dNo-sI-2cW" secondAttribute="trailing" constant="8" id="A8x-uL-LPD"/>
                                         <constraint firstItem="kgy-eB-yl5" firstAttribute="leading" secondItem="dNo-sI-2cW" secondAttribute="leading" id="B1q-Xe-xqE"/>
                                         <constraint firstAttribute="trailing" secondItem="5gl-9o-sXV" secondAttribute="trailing" constant="136" id="Ia8-Rk-VU4"/>
-                                        <constraint firstAttribute="bottom" secondItem="5gl-9o-sXV" secondAttribute="bottom" constant="-1" id="QfL-5s-mj1"/>
+                                        <constraint firstAttribute="bottom" secondItem="5gl-9o-sXV" secondAttribute="bottom" constant="1" id="QfL-5s-mj1"/>
                                         <constraint firstItem="kgy-eB-yl5" firstAttribute="bottom" secondItem="dNo-sI-2cW" secondAttribute="bottom" id="ZqO-nh-ItC"/>
                                         <constraint firstItem="dNo-sI-2cW" firstAttribute="top" secondItem="nnB-PW-TnO" secondAttribute="top" constant="10" id="aRx-Cs-sLs"/>
                                         <constraint firstItem="dNo-sI-2cW" firstAttribute="leading" secondItem="nnB-PW-TnO" secondAttribute="leading" constant="16" id="cLD-Wg-cbX"/>
-                                        <constraint firstItem="5gl-9o-sXV" firstAttribute="top" secondItem="C2z-q3-7J7" secondAttribute="bottom" constant="1" id="din-mW-VhD"/>
+                                        <constraint firstItem="5gl-9o-sXV" firstAttribute="top" secondItem="C2z-q3-7J7" secondAttribute="bottom" constant="20" id="din-mW-VhD"/>
                                         <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="tgA-CA-grC" secondAttribute="trailing" constant="300" id="gL5-TR-BYR"/>
                                         <constraint firstItem="tgA-CA-grC" firstAttribute="top" secondItem="nnB-PW-TnO" secondAttribute="top" constant="25" id="k7K-M9-27T"/>
                                         <constraint firstItem="5gl-9o-sXV" firstAttribute="leading" secondItem="nnB-PW-TnO" secondAttribute="leading" constant="16" id="kOv-aj-S2B"/>
                                         <constraint firstItem="kgy-eB-yl5" firstAttribute="trailing" secondItem="dNo-sI-2cW" secondAttribute="trailing" id="wFt-bX-cQa"/>
-                                        <constraint firstItem="C2z-q3-7J7" firstAttribute="leading" secondItem="nnB-PW-TnO" secondAttribute="leading" constant="16" id="yB2-4E-6y5"/>
+                                        <constraint firstItem="C2z-q3-7J7" firstAttribute="leading" secondItem="nnB-PW-TnO" secondAttribute="leading" constant="32" id="yB2-4E-6y5"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <constraints>
-                                    <constraint firstItem="vP3-oB-H92" firstAttribute="bottom" secondItem="C2z-q3-7J7" secondAttribute="bottom" constant="30.333333333333314" id="KUa-y8-b7T"/>
-                                    <constraint firstItem="vP3-oB-H92" firstAttribute="trailing" secondItem="C2z-q3-7J7" secondAttribute="trailing" constant="16" id="aOy-IA-TDN"/>
-                                    <constraint firstItem="C2z-q3-7J7" firstAttribute="leading" secondItem="vP3-oB-H92" secondAttribute="leading" constant="16" id="lwV-63-DNM"/>
-                                    <constraint firstItem="C2z-q3-7J7" firstAttribute="top" secondItem="vP3-oB-H92" secondAttribute="top" constant="76" id="zhq-FF-SLq"/>
+                                    <constraint firstItem="vP3-oB-H92" firstAttribute="trailing" secondItem="C2z-q3-7J7" secondAttribute="trailing" constant="57" id="aOy-IA-TDN"/>
+                                    <constraint firstItem="C2z-q3-7J7" firstAttribute="leading" secondItem="vP3-oB-H92" secondAttribute="leading" constant="32" id="lwV-63-DNM"/>
+                                    <constraint firstItem="C2z-q3-7J7" firstAttribute="top" secondItem="vP3-oB-H92" secondAttribute="top" constant="68" id="zhq-FF-SLq"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="vP3-oB-H92"/>
                                 <connections>
@@ -528,7 +527,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVt-aY-Hua" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2887" y="1193"/>
+            <point key="canvasLocation" x="2886.9565217391305" y="1192.6339285714284"/>
         </scene>
         <!--News-->
         <scene sceneID="fOR-Mv-DUC">
