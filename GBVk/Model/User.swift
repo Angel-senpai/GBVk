@@ -9,14 +9,29 @@
 import UIKit
 
 
+struct UserConfiguration {
+    var firstName:String
+    var lastName:String
+    var age: Date
+}
+
 class User {
     
-    var userName: String
-    var userImage: UIImage
-    
-    init( name: String, image: UIImage = #imageLiteral(resourceName: "dog")) {
-        userName = name
-        userImage = image
+    var userConfig: UserConfiguration{
+        willSet{
+           fullName = self.userConfig.firstName + " " + self.userConfig.lastName
+        }
     }
+   private(set) var fullName: String = ""
+    var userImage: String
+    
+    init( firstName: String,lastName: String,age: Date, strImage: String = "dog") {
+        userConfig = UserConfiguration(firstName: firstName,
+                                       lastName: lastName,
+                                       age: age)
+        fullName = self.userConfig.firstName + " " + self.userConfig.lastName
+        userImage = strImage
+    }
+    
     
 }

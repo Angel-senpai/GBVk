@@ -11,7 +11,14 @@ import UIKit
 class GroupCell: UITableViewCell  {
     
 
+
     @IBOutlet weak var groupImageV: UIImageView!
     @IBOutlet weak var groupLabel: UILabel!
-
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        
+    }
+    
 }
