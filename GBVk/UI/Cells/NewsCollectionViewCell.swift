@@ -13,12 +13,13 @@ class NewsCollectionViewCell: UICollectionViewCell {
 
 
     @IBOutlet weak var photoView: UIImageView!
-        
+    
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
     }
     
     
 }
+
+

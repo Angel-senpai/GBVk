@@ -40,6 +40,8 @@ class NewsScreenTableViewController: UITableViewController {
         cell.userImageView.contentMode = .scaleAspectFit
         cell.userImageView.layer.masksToBounds = true
         
+        cell.configure(with: UIImage(named: user.userImage)!)
+        
         return cell
     }
     
@@ -47,19 +49,4 @@ class NewsScreenTableViewController: UITableViewController {
     
 }
     
-    
-    extension NewsScreenTableViewController: UICollectionViewDataSource, UICollectionViewDelegate{
-        
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            1
-        }
-        
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewsCollectionCell", for: indexPath) as! NewsCollectionViewCell
-            cell.photoView.image = UIImage(named: user.userImage)
-
-            return cell
-        }
-        
-    }
 
