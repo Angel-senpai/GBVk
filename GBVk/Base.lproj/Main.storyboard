@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="-794" y="120"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GBVk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="GBVk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -382,138 +382,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="none" indentationWidth="10" reuseIdentifier="NewsViewCell" id="MMb-jJ-H4V" customClass="NewsViewCell" customModule="GBVk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="100.33333587646484"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MMb-jJ-H4V" id="nnB-PW-TnO">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100.33333587646484"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dNo-sI-2cW">
-                                            <rect key="frame" x="16" y="10" width="50" height="50"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="M7y-TN-z5v"/>
-                                                <constraint firstAttribute="width" secondItem="dNo-sI-2cW" secondAttribute="height" multiplier="1:1" id="oue-mU-ZuD"/>
-                                            </constraints>
-                                        </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kgy-eB-yl5" customClass="CircleShadowImage" customModule="GBVk" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="10" width="50" height="50"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        </view>
-                                        <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5gl-9o-sXV">
-                                            <rect key="frame" x="16" y="70.333333333333314" width="262" height="30"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYp-6T-Rk1" customClass="LikeButton" customModule="GBVk" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="76.333333333333329" height="30"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="liked" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="likeCount">
-                                                            <integer key="value" value="1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="like:" destination="MMb-jJ-H4V" eventType="touchUpInside" id="wQ7-pO-BVg"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHs-eL-cih" customClass="CommentButton" customModule="GBVk" customModuleProvider="target">
-                                                    <rect key="frame" x="86.333333333333343" y="0.0" width="76.333333333333343" height="30"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="commentCount">
-                                                            <integer key="value" value="2"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="comment" value="NO"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="comment:" destination="MMb-jJ-H4V" eventType="touchUpInside" id="1Tv-Fh-sK1"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3V-PF-UOa" customClass="RepostButton" customModule="GBVk" customModuleProvider="target">
-                                                    <rect key="frame" x="172.66666666666666" y="0.0" width="89.333333333333343" height="30"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="reposted" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="repostCount">
-                                                            <integer key="value" value="1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="repost:" destination="MMb-jJ-H4V" eventType="touchUpInside" id="stF-7b-g9z"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgA-CA-grC">
-                                            <rect key="frame" x="74" y="25" width="41.666666666666657" height="20.333333333333329"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C2z-q3-7J7" customClass="UINewsCollectionView" customModule="GBVk" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="70" width="414" height="0.3333333333333286"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                            <collectionViewLayout key="collectionViewLayout" id="Jed-Z4-xDj" customClass="CollectionViewFlowLayout" customModule="GBVk" customModuleProvider="target"/>
-                                            <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="NewsCollectionCell" id="YHO-ef-yjN" customClass="NewsCollectionViewCell" customModule="GBVk" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="rZc-Hg-yb7">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n3C-TI-bx9">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                            </imageView>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="n3C-TI-bx9" firstAttribute="width" secondItem="rZc-Hg-yb7" secondAttribute="height" multiplier="1:1" id="9db-68-hWW"/>
-                                                            <constraint firstAttribute="bottom" secondItem="n3C-TI-bx9" secondAttribute="bottom" id="Fr3-oF-ITr"/>
-                                                            <constraint firstAttribute="trailing" secondItem="n3C-TI-bx9" secondAttribute="trailing" id="PyA-2h-2XR"/>
-                                                            <constraint firstItem="n3C-TI-bx9" firstAttribute="top" secondItem="rZc-Hg-yb7" secondAttribute="top" id="SSO-of-ujU"/>
-                                                            <constraint firstItem="n3C-TI-bx9" firstAttribute="leading" secondItem="rZc-Hg-yb7" secondAttribute="leading" id="nPQ-6m-BD2"/>
-                                                        </constraints>
-                                                    </collectionViewCellContentView>
-                                                    <connections>
-                                                        <outlet property="photoView" destination="n3C-TI-bx9" id="5Cp-qd-DSy"/>
-                                                    </connections>
-                                                </collectionViewCell>
-                                            </cells>
-                                            <connections>
-                                                <outlet property="dataSource" destination="MMb-jJ-H4V" id="ySb-48-Zfg"/>
-                                                <outlet property="delegate" destination="MMb-jJ-H4V" id="oe6-69-seT"/>
-                                            </connections>
-                                        </collectionView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="kgy-eB-yl5" firstAttribute="top" secondItem="dNo-sI-2cW" secondAttribute="top" id="4PQ-Ed-k6h"/>
-                                        <constraint firstItem="C2z-q3-7J7" firstAttribute="top" secondItem="nnB-PW-TnO" secondAttribute="top" constant="70" id="69U-51-xL7"/>
-                                        <constraint firstAttribute="trailing" secondItem="C2z-q3-7J7" secondAttribute="trailing" id="6Ql-Lt-LX2"/>
-                                        <constraint firstItem="tgA-CA-grC" firstAttribute="leading" secondItem="dNo-sI-2cW" secondAttribute="trailing" constant="8" id="A8x-uL-LPD"/>
-                                        <constraint firstItem="kgy-eB-yl5" firstAttribute="leading" secondItem="dNo-sI-2cW" secondAttribute="leading" id="B1q-Xe-xqE"/>
-                                        <constraint firstAttribute="trailing" secondItem="5gl-9o-sXV" secondAttribute="trailing" constant="136" id="Ia8-Rk-VU4"/>
-                                        <constraint firstAttribute="bottom" secondItem="5gl-9o-sXV" secondAttribute="bottom" id="QfL-5s-mj1"/>
-                                        <constraint firstItem="kgy-eB-yl5" firstAttribute="bottom" secondItem="dNo-sI-2cW" secondAttribute="bottom" id="ZqO-nh-ItC"/>
-                                        <constraint firstItem="dNo-sI-2cW" firstAttribute="top" secondItem="nnB-PW-TnO" secondAttribute="top" constant="10" id="aRx-Cs-sLs"/>
-                                        <constraint firstItem="dNo-sI-2cW" firstAttribute="leading" secondItem="nnB-PW-TnO" secondAttribute="leading" constant="16" id="cLD-Wg-cbX"/>
-                                        <constraint firstItem="5gl-9o-sXV" firstAttribute="top" secondItem="C2z-q3-7J7" secondAttribute="bottom" id="din-mW-VhD"/>
-                                        <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="tgA-CA-grC" secondAttribute="trailing" constant="300" id="gL5-TR-BYR"/>
-                                        <constraint firstItem="tgA-CA-grC" firstAttribute="top" secondItem="nnB-PW-TnO" secondAttribute="top" constant="25" id="k7K-M9-27T"/>
-                                        <constraint firstItem="5gl-9o-sXV" firstAttribute="leading" secondItem="nnB-PW-TnO" secondAttribute="leading" constant="16" id="kOv-aj-S2B"/>
-                                        <constraint firstItem="kgy-eB-yl5" firstAttribute="trailing" secondItem="dNo-sI-2cW" secondAttribute="trailing" id="wFt-bX-cQa"/>
-                                        <constraint firstItem="C2z-q3-7J7" firstAttribute="leading" secondItem="nnB-PW-TnO" secondAttribute="leading" id="yB2-4E-6y5"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <viewLayoutGuide key="safeArea" id="vP3-oB-H92"/>
-                                <connections>
-                                    <outlet property="avatarShadow" destination="kgy-eB-yl5" id="fom-JY-ykL"/>
-                                    <outlet property="collectionView" destination="C2z-q3-7J7" id="HOp-PZ-0b7"/>
-                                    <outlet property="userImageView" destination="dNo-sI-2cW" id="tIt-k2-JXM"/>
-                                    <outlet property="userName" destination="tgA-CA-grC" id="9WS-85-sQF"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="nS8-Ey-fWy" id="gpd-hD-slS"/>
                             <outlet property="delegate" destination="nS8-Ey-fWy" id="Z6p-rL-cDr"/>

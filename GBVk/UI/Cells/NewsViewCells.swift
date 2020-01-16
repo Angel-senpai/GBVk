@@ -13,16 +13,15 @@ class NewsViewCell: UITableViewCell {
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var avatarShadow: CircleShadowImage!
-    @IBOutlet weak var collectionView: UINewsCollectionView!
+    @IBOutlet weak var stackView: UIStackView!
     
     var userImage: UIImage!
     
-    func configure(with image: UIImage) {
+    func configure(with image: UIImage, collection images: [UIImage]) {
         self.userImage = image
-         self.collectionView.reloadData()
-         self.collectionView.layoutIfNeeded()
+        stackView.addSubview(userImageView)
+
      }
- 
     
     @IBAction func like(_ sender: Any) {
         (sender as! LikeButton).like()
@@ -40,21 +39,8 @@ class NewsViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }
 
-extension NewsViewCell: UICollectionViewDataSource, UICollectionViewDelegate{
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewsCollectionCell", for: indexPath) as! NewsCollectionViewCell
-        cell.photoView.image = userImage
-        return cell
-    }
-    
-}
+
 
 

@@ -19,7 +19,8 @@ class NewsScreenTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let nib = UINib.init(nibName: "NewsViewCellWithPhoto", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "NewsViewCellWithPhoto")
     }
     
 
@@ -32,15 +33,11 @@ class NewsScreenTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsViewCell", for: indexPath) as! NewsViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsViewCellWithPhoto", for: indexPath) as! NewsViewCellWithPhoto
         
-        cell.avatarShadow.image.image = UIImage(named: user.userImage)
-        cell.userName.text = user.fullName
-        cell.userImageView.layer.cornerRadius = cell.userImageView.frame.width / 2
-        cell.userImageView.contentMode = .scaleAspectFit
-        cell.userImageView.layer.masksToBounds = true
+        guard let image = UIImage(named: user.userImage) else {return cell}
         
-        cell.configure(with: UIImage(named: user.userImage)!)
+        cell.configure(name:  user.fullName, with: image, collection: [image,image,image,image,image])
         
         return cell
     }

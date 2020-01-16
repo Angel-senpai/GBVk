@@ -71,6 +71,10 @@ class FriendTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
 
@@ -86,9 +90,7 @@ class FriendTableViewController: UITableViewController {
         
         cell.shadowAvatar.image.image = UIImage(named: user.userImage)
         cell.friendLabel.text = user.fullName
-        cell.friendImageView.layer.cornerRadius = cell.friendImageView.frame.width / 2
-        cell.friendImageView.contentMode = .scaleAspectFit
-        cell.friendImageView.layer.masksToBounds = true
+
 
         return cell
     }
