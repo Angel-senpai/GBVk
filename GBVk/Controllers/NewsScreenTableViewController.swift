@@ -37,7 +37,7 @@ class NewsScreenTableViewController: UITableViewController {
         
         guard let image = UIImage(named: user.userImage) else {return cell}
         
-        cell.configure(name:  user.fullName, with: image, collection: [image,image,image,image,image])
+        cell.configure(name:  user.fullName, with: image, collection: [image,image,image])
         
         return cell
     }
