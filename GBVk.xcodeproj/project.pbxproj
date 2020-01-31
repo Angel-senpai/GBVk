@@ -18,6 +18,7 @@
 		6938D81F23ABAD5C0073D290 /* CommentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6938D81E23ABAD5C0073D290 /* CommentButton.swift */; };
 		6950CEE523AA7C560007BBE9 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6950CEE423AA7C560007BBE9 /* LoadingView.swift */; };
 		6959E39823DA1FEA009F69C0 /* AutorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6959E39723DA1FEA009F69C0 /* AutorizationViewController.swift */; };
+		6959E39B23DC95A2009F69C0 /* vkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6959E39A23DC95A2009F69C0 /* vkAPI.swift */; };
 		696DBC28238C69DA00E1BEFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696DBC27238C69DA00E1BEFD /* AppDelegate.swift */; };
 		696DBC2A238C69DA00E1BEFD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696DBC29238C69DA00E1BEFD /* SceneDelegate.swift */; };
 		696DBC2C238C69DA00E1BEFD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696DBC2B238C69DA00E1BEFD /* LoginViewController.swift */; };
@@ -36,6 +37,9 @@
 		69A0868D23C8A9FB008D7404 /* NewsViewCellWithPhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69A0868B23C8A9FB008D7404 /* NewsViewCellWithPhoto.xib */; };
 		69BBFA3123D0456400A8E12B /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BBFA3023D0456400A8E12B /* Session.swift */; };
 		69FAF7FE23CBD96400B3DA4D /* CustomCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FAF7FD23CBD96400B3DA4D /* CustomCollectionViewLayout.swift */; };
+		69FE211623E2288C00D8B335 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FE211523E2288C00D8B335 /* Photo.swift */; };
+		69FE211923E36F2200D8B335 /* UserRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FE211823E36F2200D8B335 /* UserRealm.swift */; };
+		69FE211B23E3AD7900D8B335 /* GroupRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FE211A23E3AD7800D8B335 /* GroupRealm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +56,7 @@
 		6938D81E23ABAD5C0073D290 /* CommentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentButton.swift; sourceTree = "<group>"; };
 		6950CEE423AA7C560007BBE9 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		6959E39723DA1FEA009F69C0 /* AutorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutorizationViewController.swift; sourceTree = "<group>"; };
+		6959E39A23DC95A2009F69C0 /* vkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vkAPI.swift; sourceTree = "<group>"; };
 		696DBC24238C69DA00E1BEFD /* GBVk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GBVk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		696DBC27238C69DA00E1BEFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		696DBC29238C69DA00E1BEFD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,7 +69,7 @@
 		6975AF0623969E2D00131CEC /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		6975AF0823969E4100131CEC /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		6975AF0A23969EE700131CEC /* FriendTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewController.swift; sourceTree = "<group>"; };
-		6986CFB323918B3600765890 /* Picture.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Picture.xcassets; sourceTree = "<group>"; };
+		6986CFB323918B3600765890 /* Picture.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Picture.xcassets; path = GBVk/Picture.xcassets; sourceTree = SOURCE_ROOT; };
 		698CAFBC2399A8B70076049F /* GlobalGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalGroupTableViewController.swift; sourceTree = "<group>"; };
 		698CAFBF239F9E240076049F /* CircleShadowImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShadowImage.swift; sourceTree = "<group>"; };
 		699EF19E23C8D8F10002CC0F /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -72,6 +77,9 @@
 		69A0868B23C8A9FB008D7404 /* NewsViewCellWithPhoto.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsViewCellWithPhoto.xib; sourceTree = "<group>"; };
 		69BBFA3023D0456400A8E12B /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		69FAF7FD23CBD96400B3DA4D /* CustomCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewLayout.swift; sourceTree = "<group>"; };
+		69FE211523E2288C00D8B335 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		69FE211823E36F2200D8B335 /* UserRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRealm.swift; sourceTree = "<group>"; };
+		69FE211A23E3AD7800D8B335 /* GroupRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRealm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +100,14 @@
 				1737DBCF4FBC98D368310576 /* Pods_GBVk.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6959E39923DC9561009F69C0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6959E39A23DC95A2009F69C0 /* vkAPI.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		696DBC1B238C69DA00E1BEFD = {
@@ -115,6 +131,7 @@
 		696DBC26238C69DA00E1BEFD /* GBVk */ = {
 			isa = PBXGroup;
 			children = (
+				6959E39923DC9561009F69C0 /* Utils */,
 				6975AF0523969E1800131CEC /* UI */,
 				6975AF0C239701EE00131CEC /* Controllers */,
 				6975AF00239644E800131CEC /* Model */,
@@ -131,9 +148,11 @@
 		6975AF00239644E800131CEC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				69FE211723E36F0900D8B335 /* Realm */,
 				6975AF01239669D300131CEC /* User.swift */,
 				6975AF03239669DF00131CEC /* Group.swift */,
 				69BBFA3023D0456400A8E12B /* Session.swift */,
+				69FE211523E2288C00D8B335 /* Photo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -141,6 +160,7 @@
 		6975AF0523969E1800131CEC /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				69FAF7FD23CBD96400B3DA4D /* CustomCollectionViewLayout.swift */,
 				69221350239FBB5200025A43 /* LikeButton.swift */,
 				6938D81E23ABAD5C0073D290 /* CommentButton.swift */,
 				69071D8723A993AB008323FF /* RepostButton.swift */,
@@ -175,9 +195,17 @@
 				6975AF0823969E4100131CEC /* PhotoCell.swift */,
 				690A45A42398EA2D0056D921 /* GroupCell.swift */,
 				69071D7B23A96136008323FF /* NewsViewCells.swift */,
-				69FAF7FD23CBD96400B3DA4D /* CustomCollectionViewLayout.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		69FE211723E36F0900D8B335 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				69FE211823E36F2200D8B335 /* UserRealm.swift */,
+				69FE211A23E3AD7800D8B335 /* GroupRealm.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 		7D93F91A4FE71397D1CB7B18 /* Pods */ = {
@@ -311,19 +339,23 @@
 				6938D81F23ABAD5C0073D290 /* CommentButton.swift in Sources */,
 				6975AF02239669D300131CEC /* User.swift in Sources */,
 				698CAFC0239F9E240076049F /* CircleShadowImage.swift in Sources */,
+				69FE211623E2288C00D8B335 /* Photo.swift in Sources */,
 				6959E39823DA1FEA009F69C0 /* AutorizationViewController.swift in Sources */,
 				6975AF0723969E2D00131CEC /* FriendCell.swift in Sources */,
 				6975AF0B23969EE700131CEC /* FriendTableViewController.swift in Sources */,
 				69071D7D23A96136008323FF /* NewsViewCells.swift in Sources */,
 				699EF19F23C8D8F10002CC0F /* NewsCollectionViewCell.swift in Sources */,
 				698CAFBD2399A8B70076049F /* GlobalGroupTableViewController.swift in Sources */,
+				6959E39B23DC95A2009F69C0 /* vkAPI.swift in Sources */,
 				690A45A3239856F90056D921 /* PhotoCollectionController.swift in Sources */,
 				690A45A52398EA2D0056D921 /* GroupCell.swift in Sources */,
 				69071D8823A993AB008323FF /* RepostButton.swift in Sources */,
+				69FE211B23E3AD7900D8B335 /* GroupRealm.swift in Sources */,
 				696DBC2C238C69DA00E1BEFD /* LoginViewController.swift in Sources */,
 				696DBC28238C69DA00E1BEFD /* AppDelegate.swift in Sources */,
 				6950CEE523AA7C560007BBE9 /* LoadingView.swift in Sources */,
 				69221351239FBB5200025A43 /* LikeButton.swift in Sources */,
+				69FE211923E36F2200D8B335 /* UserRealm.swift in Sources */,
 				6975AF04239669DF00131CEC /* Group.swift in Sources */,
 				69BBFA3123D0456400A8E12B /* Session.swift in Sources */,
 				696DBC2A238C69DA00E1BEFD /* SceneDelegate.swift in Sources */,

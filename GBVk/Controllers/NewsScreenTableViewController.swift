@@ -14,9 +14,7 @@ class NewsScreenTableViewController: UITableViewController {
 
     var newsCount = 1
 
-    
-    let user = User(firstName: "Petya", lastName: "Smirnov", age: Date(), strImage: "catWorking")
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib.init(nibName: "NewsViewCellWithPhoto", bundle: nil)
@@ -35,9 +33,9 @@ class NewsScreenTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsViewCellWithPhoto", for: indexPath) as! NewsViewCellWithPhoto
         
-        guard let image = UIImage(named: user.userImage) else {return cell}
+        //guard let image = UIImage(named: user.userImage) else {return cell}
         
-        cell.configure(name:  user.fullName, with: image, collection: [image,image,image])
+        //cell.configure(name:  user.fullName, with: image, collection: [image,image,image])
         
         return cell
     }

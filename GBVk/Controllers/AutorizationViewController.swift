@@ -16,7 +16,7 @@ class AutorizationViewController: UIViewController {
     
     
     var webView: WKWebView!
-    var vkAPI = VKApi()
+    let vkApi = VKApi()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,72 +44,6 @@ class AutorizationViewController: UIViewController {
 
 }
 
-class VKApi {
-    
-    let vkURL = "https://api.vk.com/method/"
-    
-    func getFriendList(by token: String){
-        let requestURL = vkURL + "friends.get"
-        
-        let params = ["v": "5.103",
-                      "access_token":token,
-                      "order":"name",
-                      "fields": "city,domain"]
-        
-        Alamofire.request(requestURL,
-                          method: .post,
-                          parameters: params).responseString(completionHandler: {(response) in
-                            print(response.value)
-                          })
-    }
-    
-    func getPhoto(by token: String,ownerId: String) {
-        let requestURL = vkURL + "photos.getAll"
-        
-        let params = ["v": "5.103",
-                      "access_token":token,
-                      "owner_id": ownerId,
-                      "extended": "0",
-                      "photo_sizes":"0",
-                      "no_service_albums":"0"]
-        
-        Alamofire.request(requestURL,
-                          method: .post,
-                          parameters: params).responseString(completionHandler: {(response) in
-                            print(response.value)
-                          })
-    }
-    
-    func getUserGroup(by token: String,ownerId: String){
-        let requestURL = vkURL + "groups.get"
-               
-               let params = ["v": "5.103",
-                             "access_token":token,
-                             "owner_id": ownerId,
-                             "extended": "1"]
-               
-               Alamofire.request(requestURL,
-                                 method: .post,
-                                 parameters: params).responseString(completionHandler: {(response) in
-                                   print(response.value)
-                                 })
-    }
-    
-    func getSearchGroup(by token: String,searchString: String){
-        let requestURL = vkURL + "groups.search"
-               
-               let params = ["v": "5.103",
-                             "access_token":token,
-                             "q": searchString,"sort": "0"]
-               
-               Alamofire.request(requestURL,
-                                 method: .post,
-                                 parameters: params).responseString(completionHandler: {(response) in
-                                   print(response.value)
-                                 })
-    }
-}
-
 extension AutorizationViewController: WKNavigationDelegate{
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         
@@ -130,13 +64,50 @@ extension AutorizationViewController: WKNavigationDelegate{
                 dict[kay] = value
                 return dict
         }
-        print(params)
         Session.instance.token = params["access_token"]!
         Session.instance.userId = params["user_id"]!
-        vkAPI.getFriendList(by: Session.instance.token)
-        vkAPI.getPhoto(by: Session.instance.token,ownerId: Session.instance.userId)
-        vkAPI.getUserGroup(by: Session.instance.token,ownerId: Session.instance.userId)
-        vkAPI.getSearchGroup(by: Session.instance.token,searchString: "Music")
+        print(Session.instance.token)
+        print(Session.instance.userId)
+
+        
+        //print(vkApi.getPhoto(by: Session.instance.token,ownerId: Session.instance.userId))
+        vkApi.getFriendList(by: Session.instance.token, hundler: {
+            print($0)
+        })
+        vkApi.getProfilePhoto(by: Session.instance.token, ownerId: Session.instance.userId){
+            print($0)
+        }
+        
+        vkApi.getPhoto(by: Session.instance.token, ownerId: Session.instance.userId) {
+            switch $0{
+            case .success(let photoes):
+                photoes.forEach{
+                    $0.photo.forEach{
+                        if $0.type == UserPhoto.Photo.PhotoType.p{
+                             print($0)
+                         }
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+        vkApi.getUserGroup(by: Session.instance.token,ownerId: Session.instance.userId){
+            switch $0{
+            case .success(let group):
+                print(group)
+            case .failure(let error):
+                print(error)
+            }
+        }
+        vkApi.getSearchGroup(by: Session.instance.token,searchString: "Music"){
+            switch $0{
+            case .success(let group):
+                print(group)
+            case .failure(let error):
+                print(error)
+            }
+        }
         decisionHandler(.cancel)
         
         

@@ -8,30 +8,51 @@
 
 import UIKit
 
-
-struct UserConfiguration {
-    var firstName:String
-    var lastName:String
-    var age: Date
-}
-
-class User {
+struct UserVK: Decodable {
+    var id: Int
+    var firstName: String
+    var lastName: String
+    var cityName: String
+    var imageURL: URL!
+    var fullName = ""
     
-    var userConfig: UserConfiguration{
-        willSet{
-           fullName = self.userConfig.firstName + " " + self.userConfig.lastName
+    enum CodingKeys: String, CodingKey {
+        case id
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case city
+    }
+    
+    enum CityKeys: String, CodingKey {
+        case id
+        case title
+    }
+    
+    init(from decoder: Decoder) throws {
+        let mainContainer = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if mainContainer.contains(.city){
+             let cityContainer = try mainContainer.nestedContainer(keyedBy: CityKeys.self, forKey: .city)
+            self.cityName = try cityContainer.decode(String.self, forKey: .title)
+        }else{
+            self.cityName = ""
         }
-    }
-   private(set) var fullName: String = ""
-    var userImage: String
-    
-    init( firstName: String,lastName: String,age: Date, strImage: String = "dog") {
-        userConfig = UserConfiguration(firstName: firstName,
-                                       lastName: lastName,
-                                       age: age)
-        fullName = self.userConfig.firstName + " " + self.userConfig.lastName
-        userImage = strImage
+        
+        self.id = try mainContainer.decode(Int.self, forKey: .id)
+        self.firstName = try mainContainer.decode(String.self, forKey: .firstName)
+        self.lastName = try mainContainer.decode(String.self, forKey: .lastName)
+        self.fullName = "\(firstName) \(lastName)"
     }
     
     
 }
+
+struct  ResponseUserData: Decodable  {
+    var count: Int
+    var items: [UserVK]
+}
+
+struct responseUser: Decodable {
+    var response: ResponseUserData
+}
+

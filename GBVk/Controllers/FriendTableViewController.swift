@@ -15,12 +15,12 @@ struct Section<T> {
 
 class FriendTableViewController: UITableViewController {
 
-    var friendSection = [Section<User>]()
-    var filtredSection = [Section<User>]()
+    var friendSection = [Section<UserVK>]()
+    var filtredSection = [Section<UserVK>]()
     let searchController = UISearchController(searchResultsController: nil)
     
-    var friendList:[User] = [User(firstName: "Ivan",lastName: "Aovorunov",age: Date(),strImage: "catWorking"), User(firstName: "Petya",lastName: "Boburov",age: Date()),User(firstName: "Petya",lastName: "Boburov",age: Date()),User(firstName: "Petya",lastName: "Boburov",age: Date()),User(firstName: "Petya",lastName: "Aoburov",age: Date()),User(firstName: "Petya",lastName: "Coburov",age: Date()),User(firstName: "Petya",lastName: "Boburov",age: Date()),User(firstName: "Petya",lastName: "Boburov",age: Date()),User(firstName: "Ivan",lastName: "Zovorunov",age: Date(),strImage: "catWorking"),User(firstName: "Ivan",lastName: "Govorunov",age: Date(),strImage: "catWorking"),User(firstName: "Ivan",lastName: "Govorunov",age: Date(),strImage: "catWorking"),User(firstName: "Ivan",lastName: "Hovorunov",age: Date(),strImage: "catWorking")]
-    var filteredFriend: [User] = []
+    var friendList:[UserVK] = []
+    var filteredFriend: [UserVK] = []
     
     var isFiltering: Bool {
       return searchController.isActive && !isSearchBarEmpty
@@ -39,7 +39,7 @@ class FriendTableViewController: UITableViewController {
         
         
         let friendDictionary = Dictionary.init(grouping: friendList){
-            $0.userConfig.lastName.prefix(1)
+            $0.fullName.prefix(1)
         }
         
         friendSection = friendDictionary.map{Section(title: String($0.key), items: $0.value)}
@@ -80,7 +80,7 @@ class FriendTableViewController: UITableViewController {
 
         
         //cell.imageV.image = UIImage(named: list[indexPath.row].userImage)
-        let user: User
+        let user: UserVK
         
         if isFiltering{
             user = filtredSection[indexPath.section].items[indexPath.row]
@@ -88,7 +88,7 @@ class FriendTableViewController: UITableViewController {
             user = friendSection[indexPath.section].items[indexPath.row]
         }
         
-        cell.shadowAvatar.image.image = UIImage(named: user.userImage)
+        //cell.shadowAvatar.image.image = UIImage(named: user.userImage)
         cell.friendLabel.text = user.fullName
 
 
@@ -96,7 +96,7 @@ class FriendTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let user:User
+        let user:UserVK
         
         if isFiltering{
             user = filtredSection[indexPath.section].items[indexPath.row]
@@ -106,7 +106,7 @@ class FriendTableViewController: UITableViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(identifier: "PhotoCollection") as! PhotoCollectionController
-        viewController.images.append(user.userImage)
+        //viewController.images.append(user.userImage)
         self.navigationController?.pushViewController(viewController, animated: true)
         
     }
@@ -138,8 +138,8 @@ extension FriendTableViewController: UISearchResultsUpdating {
   }
     func filterContentForSearchText(_ searchText: String) {
         filtredSection = friendSection.filter{
-           return !$0.items.filter{ (user:User) -> Bool in
-                return user.userConfig.lastName.lowercased().contains(searchText.lowercased())
+           return !$0.items.filter{ (user:UserVK) -> Bool in
+                return user.fullName.lowercased().contains(searchText.lowercased())
             }.isEmpty
         }
       
