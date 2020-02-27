@@ -15,12 +15,12 @@ struct Section<T> {
 
 class FriendTableViewController: UITableViewController {
 
-    var friendSection = [Section<UserVK>]()
-    var filtredSection = [Section<UserVK>]()
+    var friendSection = [Section<UserRealm>]()
+    var filtredSection = [Section<UserRealm>]()
     let searchController = UISearchController(searchResultsController: nil)
     
-    var friendList:[UserVK] = []
-    var filteredFriend: [UserVK] = []
+    var friendList:[UserRealm] = []
+    var filteredFriend: [UserRealm] = []
     
     var isFiltering: Bool {
       return searchController.isActive && !isSearchBarEmpty
@@ -30,6 +30,7 @@ class FriendTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Friends"
@@ -37,14 +38,18 @@ class FriendTableViewController: UITableViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
+        let dataBase = UsersRepositoryRealm()
+        
+        friendList = dataBase.getUsers()
         
         let friendDictionary = Dictionary.init(grouping: friendList){
             $0.fullName.prefix(1)
         }
         
         friendSection = friendDictionary.map{Section(title: String($0.key), items: $0.value)}
-        friendSection.sort{ $0.title < $1.title }
-        
+        friendSection.sort{ $0.title < $1.title
+            
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -80,7 +85,7 @@ class FriendTableViewController: UITableViewController {
 
         
         //cell.imageV.image = UIImage(named: list[indexPath.row].userImage)
-        let user: UserVK
+        let user: UserRealm
         
         if isFiltering{
             user = filtredSection[indexPath.section].items[indexPath.row]
@@ -96,14 +101,14 @@ class FriendTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let user:UserVK
+        var user: UserRealm
         
         if isFiltering{
             user = filtredSection[indexPath.section].items[indexPath.row]
         }else{
             user = friendSection[indexPath.section].items[indexPath.row]
         }
-        
+        print(user)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(identifier: "PhotoCollection") as! PhotoCollectionController
         //viewController.images.append(user.userImage)
@@ -138,7 +143,7 @@ extension FriendTableViewController: UISearchResultsUpdating {
   }
     func filterContentForSearchText(_ searchText: String) {
         filtredSection = friendSection.filter{
-           return !$0.items.filter{ (user:UserVK) -> Bool in
+           return !$0.items.filter{ (user:UserRealm) -> Bool in
                 return user.fullName.lowercased().contains(searchText.lowercased())
             }.isEmpty
         }

@@ -14,6 +14,8 @@ class VKApi {
     
     private let vkURL = "https://api.vk.com/method/"
     
+    typealias Out = Swift.Result
+    
     enum NetworkError: Error {
         case failedRequest(message: String)
         case decodableError
@@ -22,7 +24,7 @@ class VKApi {
     
     func serverResponse<T: Decodable>(requestURL: String,
                                       params: Parameters,
-                                      completion: @escaping (Swift.Result<T, NetworkError>) -> Void){
+                                      completion: @escaping (Out<T, NetworkError>) -> Void){
         Alamofire.request(requestURL,
                           method: .post,
                           parameters: params)
@@ -39,11 +41,10 @@ class VKApi {
                         completion(.failure(.decodableError))
                     }
                 }
-                
         }
     }
     
-    func getFriendList(by token: String, hundler: @escaping (Swift.Result<[UserVK], NetworkError>) -> ()){
+    func getFriendList(by token: String, hundler: @escaping (Out<[UserResponse], NetworkError>) -> ()){
         let requestURL = vkURL + "friends.get"
         
         let params = ["v": "5.103",
@@ -52,7 +53,7 @@ class VKApi {
                       "fields": "city,domain"] as [String:Any]
         
         serverResponse(requestURL: requestURL, params: params){
-            (respond: Swift.Result<responseUser,NetworkError>) in
+            (respond: Out<responseUser,NetworkError>) in
             switch respond{
             case .failure(let error): hundler(.failure(error))
             case .success(let users): hundler(.success(users.response.items))
@@ -63,7 +64,7 @@ class VKApi {
     
     
     
-    func getProfilePhoto(by token: String, ownerId: String, hundler: @escaping (Swift.Result<String, NetworkError>) -> ()) {
+    func getProfilePhoto(by token: String, ownerId: String, hundler: @escaping (Out<String, NetworkError>) -> ()) {
         let requestURL = vkURL + "photos.get"
         
         let params = ["v": "5.103",
@@ -73,7 +74,7 @@ class VKApi {
                       "rev":"1",
                       "count":"1"]
         serverResponse(requestURL: requestURL, params: params){
-            (respond: Swift.Result<responsePhoto,NetworkError>) in
+            (respond: Out<responsePhoto,NetworkError>) in
             switch respond{
             case .failure(let error): hundler(.failure(error))
             case .success(let photo): hundler(.success(photo.response.items[0].photo[1].url))
@@ -81,7 +82,7 @@ class VKApi {
         }
     }
     
-    func getPhoto(by token: String, ownerId: String,count: Int = 10, hundler: @escaping (Swift.Result<[UserPhoto], NetworkError>) -> ()) {
+    func getPhoto(by token: String, ownerId: String,count: Int = 10, hundler: @escaping (Out<[UserPhoto], NetworkError>) -> ()) {
         let requestURL = vkURL + "photos.getAll"
         
         let params = ["v": "5.103",
@@ -94,7 +95,7 @@ class VKApi {
             "skip_hidden":"0"]
         
         serverResponse(requestURL: requestURL, params: params){
-            (respond: Swift.Result<responsePhoto,NetworkError>) in
+            (respond: Out<responsePhoto,NetworkError>) in
             switch respond{
             case .failure(let error): hundler(.failure(error))
             case .success(let photo): hundler(.success(photo.response.items))
@@ -103,7 +104,7 @@ class VKApi {
         }
     }
         
-        func getUserGroup(by token: String,ownerId: String, hundler: @escaping (Swift.Result<[GroupVK], NetworkError>) -> ()){
+        func getUserGroup(by token: String,ownerId: String, hundler: @escaping (Out<[GroupVK], NetworkError>) -> ()){
             let requestURL = vkURL + "groups.get"
             
             let params = ["v": "5.103",
@@ -112,7 +113,7 @@ class VKApi {
                           "extended": "1"]
             
             serverResponse(requestURL: requestURL, params: params){
-                (respond: Swift.Result<responseGroup,NetworkError>) in
+                (respond: Out<responseGroup,NetworkError>) in
                 switch respond{
                 case .failure(let error): hundler(.failure(error))
                 case .success(let photo): hundler(.success(photo.response.items))
@@ -122,7 +123,7 @@ class VKApi {
         
         func getSearchGroup(by token: String,
                             searchString: String,count: Int = 10,
-                            hundler: @escaping (Swift.Result<[GroupVK], NetworkError>) -> ()){
+                            hundler: @escaping (Out<[GroupVK], NetworkError>) -> ()){
             let requestURL = vkURL + "groups.search"
             
             let params = ["v": "5.103",
@@ -132,7 +133,7 @@ class VKApi {
                 "sort": "0"]
             
             serverResponse(requestURL: requestURL, params: params){
-                (respond: Swift.Result<responseGroup,NetworkError>) in
+                (respond: Out<responseGroup,NetworkError>) in
                 switch respond{
                 case .failure(let error): hundler(.failure(error))
                 case .success(let photo): hundler(.success(photo.response.items))

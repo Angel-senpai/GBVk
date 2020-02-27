@@ -388,7 +388,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="6Xl-Do-Mk6">
             <objects>
-                <tabBarController id="5yw-aQ-1aI" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBar" id="5yw-aQ-1aI" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Oja-ti-46d"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IvV-zA-R03">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -502,7 +502,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JNw-RJ-y2k" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1513" y="120"/>
+            <point key="canvasLocation" x="-794" y="755"/>
         </scene>
     </scenes>
     <resources>

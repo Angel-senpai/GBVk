@@ -95,15 +95,15 @@ class LoadingView: UIView {
     
     func animation(){
         if isAnimation{
-        UIView.animate(withDuration: 0.6,
+        UIView.animate(withDuration: 0.4,
                        animations: {self.firstView.alpha = 1.0 ; self.thirdView.alpha = 0 },
                        completion: { _ in
             if self.isAnimation{
-                        UIView.animate(withDuration: 0.6,
+                        UIView.animate(withDuration: 0.4,
                                        animations: { self.secondView.alpha = 1 ; self.firstView.alpha = 0},
                                        completion: { _ in
                             if self.isAnimation{
-                                        UIView.animate(withDuration: 0.6,
+                                        UIView.animate(withDuration: 0.4,
                                                        animations: { self.thirdView.alpha = 1 ; self.secondView.alpha = 0},
                                                        completion: {  _ in
                                                         self.animation()

@@ -8,12 +8,12 @@
 
 import UIKit
 
-struct UserVK: Decodable {
+struct UserResponse: Decodable {
     var id: Int
     var firstName: String
     var lastName: String
     var cityName: String
-    var imageURL: URL!
+    var imageURL: URL?
     var fullName = ""
     
     enum CodingKeys: String, CodingKey {
@@ -37,22 +37,21 @@ struct UserVK: Decodable {
         }else{
             self.cityName = ""
         }
-        
         self.id = try mainContainer.decode(Int.self, forKey: .id)
         self.firstName = try mainContainer.decode(String.self, forKey: .firstName)
         self.lastName = try mainContainer.decode(String.self, forKey: .lastName)
         self.fullName = "\(firstName) \(lastName)"
     }
-    
-    
+
 }
 
 struct  ResponseUserData: Decodable  {
     var count: Int
-    var items: [UserVK]
+    var items: [UserResponse]
+    
+    
 }
 
 struct responseUser: Decodable {
     var response: ResponseUserData
 }
-
