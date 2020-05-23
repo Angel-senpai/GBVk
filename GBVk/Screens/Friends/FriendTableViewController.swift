@@ -8,19 +8,16 @@
 
 import UIKit
 
-struct Section<T> {
-    var title: String
-    var items: [T]
-}
 
 class FriendTableViewController: UITableViewController {
 
-    var friendSection = [Section<UserRealm>]()
-    var filtredSection = [Section<UserRealm>]()
+
     let searchController = UISearchController(searchResultsController: nil)
+   
     
-    var friendList:[UserRealm] = []
-    var filteredFriend: [UserRealm] = []
+    var presenter: FriendsPresenter?
+    
+    
     
     var isFiltering: Bool {
       return searchController.isActive && !isSearchBarEmpty
@@ -29,50 +26,41 @@ class FriendTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        presenter = FriendsPresenterImplementation()
+        presenter?.viewDidLoad()
+        presenter?.uiTable = self.tableView
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Friends"
         searchController.searchBar.searchBarStyle = .minimal
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        
-        let dataBase = UsersRepositoryRealm()
-        
-        friendList = dataBase.getUsers()
-        
-        let friendDictionary = Dictionary.init(grouping: friendList){
-            $0.fullName.prefix(1)
-        }
-        
-        friendSection = friendDictionary.map{Section(title: String($0.key), items: $0.value)}
-        friendSection.sort{ $0.title < $1.title
-            
-        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         if isFiltering {
-            return filtredSection.count
+            return 1
         }
-        return friendSection.count
+        return 1
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
-            return filtredSection[section].items.count
+            return presenter?.getFiltredSection().count ?? 0
         }
-        return friendSection[section].items.count
+        return presenter?.getFriendSection().count ?? 0
     }
     
     
 
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        friendList.remove(at: indexPath.row)
+        guard let unpresentor = presenter else {
+            return
+        }
+        unpresentor.removeFriend(index: indexPath.row)
         self.tableView.reloadData()
     }
     
@@ -86,27 +74,29 @@ class FriendTableViewController: UITableViewController {
         
         //cell.imageV.image = UIImage(named: list[indexPath.row].userImage)
         let user: UserRealm
-        
+        guard let unpresentor = presenter else {return UITableViewCell()}
+            
         if isFiltering{
-            user = filtredSection[indexPath.section].items[indexPath.row]
+            user = unpresentor.getFiltredSection()[indexPath.row]
         }else{
-            user = friendSection[indexPath.section].items[indexPath.row]
+            user = unpresentor.getFriendSection()[indexPath.row]
         }
         
         //cell.shadowAvatar.image.image = UIImage(named: user.userImage)
         cell.friendLabel.text = user.fullName
-
-
-        return cell
+        presenter?.getUserProfilePhoto(user: user){
+            cell.shadowAvatar.imageView.image = $0
+        }
+         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var user: UserRealm
-        
+        guard let unpresentor = presenter else {return}
         if isFiltering{
-            user = filtredSection[indexPath.section].items[indexPath.row]
+            user = unpresentor.getFiltredSection()[indexPath.row]
         }else{
-            user = friendSection[indexPath.section].items[indexPath.row]
+            user = unpresentor.getFriendSection()[indexPath.row]
         }
         print(user)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -117,14 +107,14 @@ class FriendTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return friendSection[section].title
+        return nil
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-            
+        guard let unpresentor = presenter else {return nil}
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
             
-            self.friendList.remove(at: indexPath.row)
+            unpresentor.removeFriend(index: indexPath.row)
             self.tableView.reloadData()
             completionHandler(true)
         }
@@ -139,17 +129,10 @@ extension FriendTableViewController: UISearchResultsUpdating {
   func updateSearchResults(for searchController: UISearchController) {
     let searchBar = searchController.searchBar
     guard let searchBarText = searchBar.text else {return}
-    filterContentForSearchText(searchBarText)
+    guard let unpresentor = presenter else {return}
+    unpresentor.filterContentForSearchText(searchBarText)
+    tableView.reloadData()
   }
-    func filterContentForSearchText(_ searchText: String) {
-        filtredSection = friendSection.filter{
-           return !$0.items.filter{ (user:UserRealm) -> Bool in
-                return user.fullName.lowercased().contains(searchText.lowercased())
-            }.isEmpty
-        }
-      
-      tableView.reloadData()
-    }
     
     var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true

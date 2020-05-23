@@ -15,7 +15,7 @@ class UserRealm: Object {
     @objc dynamic var firstName: String = ""
     @objc dynamic var lastName: String = ""
     @objc dynamic var cityName: String = ""
-    @objc dynamic var imageURL: URL? = URL(string: "")
+    @objc dynamic var imageURL: String = ""
     @objc dynamic var fullName: String = ""
     
     var groups = List<GroupRealm>()

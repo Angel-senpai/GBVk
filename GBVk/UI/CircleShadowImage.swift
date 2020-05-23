@@ -9,7 +9,7 @@
 import UIKit
 
 class CircleShadowImage: UIView {
-    var image: UIImageView!
+    var imageView: UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,21 +22,26 @@ class CircleShadowImage: UIView {
         addImage()
     }
     
-    func addImage() {
-        image = UIImageView(image: #imageLiteral(resourceName: "dog"))
-       addSubview(image)
+    func changeImage(strUrl : String) {
+        self.imageView = UIImageView(image: UIImage(contentsOfFile: strUrl))
+        self.layoutSubviews()
+    }
+    
+    private func addImage() {
+        imageView = UIImageView(image: #imageLiteral(resourceName: "dog"))
+       addSubview(imageView)
     }
     
     override func layoutSubviews() {
-        image.frame = bounds
+        imageView.frame = bounds
         
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 1.0
         layer.shadowRadius = 4.0
         layer.shadowOffset = CGSize(width: 0, height: 1)
         
-        image.layer.cornerRadius = image.bounds.height / 2
-        image.layer.masksToBounds = true
+        imageView.layer.cornerRadius = imageView.bounds.height / 2
+        imageView.layer.masksToBounds = true
         
         
     }

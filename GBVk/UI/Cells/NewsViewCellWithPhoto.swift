@@ -33,7 +33,7 @@ class NewsViewCellWithPhoto: UITableViewCell {
     
     func configure(name: String,with image: UIImage, collection images: [UIImage]) {
         userName.text = name
-        avatar.image.image = image
+        avatar.imageView.image = image
         photoCollection = images
      }
     

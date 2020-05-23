@@ -14,11 +14,11 @@ import Alamofire
 class AutorizationViewController: UIViewController {
     
 
-    let privateKay = "7305836"
+    let privateKay = "7479663"
     
     
     var webView: WKWebView!
-    let vkApi = VKApi()
+    let vkAPI = vkApi()
     var loadingViews: LoadingView!
 
     override func viewDidLoad() {
@@ -35,7 +35,7 @@ class AutorizationViewController: UIViewController {
                           parameters: ["client_id": privateKay,
                                        "redirect_uri": "https://oauth.vk.com/blank.html",
                                        "display": "mobile",
-                                       "scope": "262150",
+                                       "scope": "270342",
                                        "response_type":"token",
                                        "v":"5.103"])
         
@@ -59,6 +59,7 @@ extension AutorizationViewController: WKNavigationDelegate{
             url.path == "/blank.html",
             let fragment = url.fragment else{
                 decisionHandler(.allow)
+                loadingViews.isHidden = true
                 return
         }
         
@@ -70,6 +71,7 @@ extension AutorizationViewController: WKNavigationDelegate{
                 let kay = params[0]
                 let value = params[1]
                 dict[kay] = value
+                loadingViews.isHidden = false
                 return dict
         }
         decisionHandler(.cancel)
@@ -79,29 +81,30 @@ extension AutorizationViewController: WKNavigationDelegate{
         print(Session.instance.token)
         print(Session.instance.userId)
         
-        let queque = DispatchQueue.global(qos: .background)
+ 
+        
+        /*let queque = DispatchQueue.global(qos: .utility)
         queque.async {
             self.vkApi.getFriendList(by: Session.instance.token, hundler: {
                 switch $0{
                 case .success(let users):
                     let userRep = UsersRepositoryRealm()
                     users.forEach{ user in
-                        self.vkApi.getProfilePhoto(by: Session.instance.token, ownerId: Session.instance.userId){ response in
-                            switch response{
-                            case .success(let strURL):
-                                let temp = URL(string: strURL)
-                                userRep.addUser(id: user.id,
-                                                firstName: user.firstName,
-                                                lastName: user.lastName,
-                                                city: user.cityName,
-                                                photoURL: temp)
-                            case .failure:
-                                break;
+                            self.vkApi.getProfilePhoto(by: Session.instance.token, ownerId: "\(user.id)"){ response in
+                                switch response{
+                                case .success(let photoArr):
+                                    userRep.addUser(id: user.id,
+                                                    firstName: user.firstName,
+                                                    lastName: user.lastName,
+                                                    city: user.cityName,
+                                                    photoURL: photoArr.photo[1].url)
+                                case .failure:
+                                    break;
+                                }
                             }
-                        }
                     }
-                case .failure(let error):
-                    print(error)
+                case .failure:
+                    break;
                 }
             })
             /*
@@ -143,9 +146,9 @@ extension AutorizationViewController: WKNavigationDelegate{
                 }
             }*/
         }
-
+        */
         //print(vkApi.getPhoto(by: Session.instance.token,ownerId: Session.instance.userId))
-    
+        
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(identifier: "TabBar") as! UITabBarController

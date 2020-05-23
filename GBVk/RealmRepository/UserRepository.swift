@@ -9,12 +9,12 @@
 import RealmSwift
 
 class UsersRepositoryRealm{
-    
+    var token: NotificationToken?
     func addUser(id: Int,
                  firstName: String,
                  lastName: String,
                  city: String,
-                 photoURL: URL?) {
+                 photoURL: String) {
         let realm = try? Realm()
         let newUser = UserRealm()
         newUser.id = id
@@ -29,10 +29,18 @@ class UsersRepositoryRealm{
         
     }
     
+    func removeUser(user: UserRealm) {
+        let realm = try? Realm()
+        try? realm?.write {
+            realm?.delete(user)
+        }
+    }
+    
     
     func getUsers() -> [UserRealm] {
         let realm = try! Realm()
         let result = realm.objects(UserRealm.self)
+
         let arr: [UserRealm] = {
             var temp = [UserRealm]()
             result.forEach { (user) in
@@ -48,4 +56,5 @@ class UsersRepositoryRealm{
         let realm = try! Realm()
         return realm.objects(UserRealm.self).filter("id == %@",id).first
     }
+    
 }

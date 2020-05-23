@@ -17,7 +17,7 @@ class GroupRepositoryRealm{
         newGroup.name = name
         
         try? realm?.write {
-            realm?.add(newGroup)
+            realm?.add(newGroup,update: .modified)
         }
     }
     

@@ -13,13 +13,16 @@ struct UserResponse: Decodable {
     var firstName: String
     var lastName: String
     var cityName: String
-    var imageURL: URL?
+    var imageURL: String
+    var deactivated: String?
     var fullName = ""
     
     enum CodingKeys: String, CodingKey {
         case id
         case firstName = "first_name"
         case lastName = "last_name"
+        case imageURL = "photo"
+        case deactivated
         case city
     }
     
@@ -37,9 +40,13 @@ struct UserResponse: Decodable {
         }else{
             self.cityName = ""
         }
+        if mainContainer.contains(.deactivated){
+            deactivated = try mainContainer.decode(String.self, forKey: .deactivated)
+        }
         self.id = try mainContainer.decode(Int.self, forKey: .id)
         self.firstName = try mainContainer.decode(String.self, forKey: .firstName)
         self.lastName = try mainContainer.decode(String.self, forKey: .lastName)
+        self.imageURL = try mainContainer.decode(String.self, forKey: .imageURL)
         self.fullName = "\(firstName) \(lastName)"
     }
 
