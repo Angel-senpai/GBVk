@@ -15,6 +15,8 @@ class FriendCell: UITableViewCell  {
     @IBOutlet weak var shadowAvatar: CircleShadowImage!
     
     
+    
+    
 }
 
 

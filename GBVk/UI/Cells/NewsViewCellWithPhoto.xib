@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsViewCellWithPhoto" id="KGk-i7-Jjw" customClass="NewsViewCellWithPhoto" customModule="GBVk" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="379"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="379"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x2H-7z-diM" customClass="CircleShadowImage" customModule="GBVk" customModuleProvider="target">
+                        <rect key="frame" x="6" y="6" width="35" height="35"/>
+                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="x2H-7z-diM" secondAttribute="height" multiplier="1:1" id="HUG-9a-5rE"/>
+                            <constraint firstAttribute="height" constant="35" id="T0S-Sb-UwP"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MV9-Zx-55K">
+                        <rect key="frame" x="61" y="13.5" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="t3u-5E-CUd">
+                        <rect key="frame" x="10" y="46" width="300" height="300"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="t3u-5E-CUd" secondAttribute="height" multiplier="1:1" id="1Xc-EB-Ytj"/>
+                            <constraint firstAttribute="height" constant="300" id="p70-LY-LHN"/>
+                        </constraints>
+                        <collectionViewLayout key="collectionViewLayout" id="RtP-sK-zNm" customClass="CustomCollectionViewLayout" customModule="GBVk" customModuleProvider="target"/>
+                        <connections>
+                            <outlet property="dataSource" destination="KGk-i7-Jjw" id="BMo-kU-xbh"/>
+                            <outlet property="delegate" destination="KGk-i7-Jjw" id="ToB-BW-D3y"/>
+                        </connections>
+                    </collectionView>
+                    <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="5c4-pn-WIf">
+                        <rect key="frame" x="6" y="349" width="194" height="30"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOc-al-dId" customClass="LikeButton" customModule="GBVk" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="53" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="like:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Pb3-px-f6o"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIk-Hy-ASC" customClass="CommentButton" customModule="GBVk" customModuleProvider="target">
+                                <rect key="frame" x="68" y="0.0" width="53" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="comment:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Cmh-4r-qaG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5k-zZ-VJU" customClass="RepostButton" customModule="GBVk" customModuleProvider="target">
+                                <rect key="frame" x="136" y="0.0" width="58" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="repost:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="rt8-JR-DFp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="t3u-5E-CUd" firstAttribute="top" secondItem="x2H-7z-diM" secondAttribute="bottom" constant="5" id="2o3-vy-bwY"/>
+                    <constraint firstItem="MV9-Zx-55K" firstAttribute="leading" secondItem="x2H-7z-diM" secondAttribute="trailing" constant="20" id="4fO-pt-YbF"/>
+                    <constraint firstItem="x2H-7z-diM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="7rO-10-Hf0"/>
+                    <constraint firstAttribute="bottom" secondItem="5c4-pn-WIf" secondAttribute="bottom" id="Qbl-ib-8em"/>
+                    <constraint firstItem="5c4-pn-WIf" firstAttribute="top" secondItem="t3u-5E-CUd" secondAttribute="bottom" constant="3" id="T3i-ti-L4v"/>
+                    <constraint firstItem="MV9-Zx-55K" firstAttribute="centerY" secondItem="x2H-7z-diM" secondAttribute="centerY" id="VsL-d3-7Ph"/>
+                    <constraint firstAttribute="trailing" secondItem="5c4-pn-WIf" secondAttribute="trailing" constant="120" id="X9q-N6-G40"/>
+                    <constraint firstItem="t3u-5E-CUd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gHR-ir-ZNQ"/>
+                    <constraint firstItem="t3u-5E-CUd" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="lX5-NE-RQM"/>
+                    <constraint firstItem="x2H-7z-diM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="wG1-Ek-bon"/>
+                    <constraint firstItem="5c4-pn-WIf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="xRe-ZI-gz8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="avatar" destination="x2H-7z-diM" id="tIP-0g-oYr"/>
+                <outlet property="collectionView" destination="t3u-5E-CUd" id="Ko4-UP-msr"/>
+                <outlet property="commentButton" destination="wIk-Hy-ASC" id="K7q-Vo-ada"/>
+                <outlet property="likeButton" destination="YOc-al-dId" id="34E-7W-E0b"/>
+                <outlet property="repostButton" destination="I5k-zZ-VJU" id="pAv-JA-XiO"/>
+                <outlet property="userName" destination="MV9-Zx-55K" id="zCC-Ci-YgG"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="228.68303571428569"/>
+        </tableViewCell>
+    </objects>
+</document>
