@@ -13,12 +13,13 @@ class NewsViewCellWithPhoto: UITableViewCell {
     @IBOutlet weak var avatar: CircleShadowImage!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var likeButton: LikeButton!
+    @IBOutlet weak var newsText: UILabel!
     @IBOutlet weak var commentButton: CommentButton!
     @IBOutlet weak var repostButton: RepostButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var isHeightCalculated: Bool = false
-    var photoCollection: [UIImage] = []{
+    var photoURL:[String] = []{
         didSet{
             collectionView.reloadData()
         }
@@ -27,14 +28,14 @@ class NewsViewCellWithPhoto: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         collectionView.register(NewsCollectionViewCell.self, forCellWithReuseIdentifier: "PhotoNewsCollection")
-        
-        // Initialization code
     }
     
-    func configure(name: String,with image: UIImage, collection images: [UIImage]) {
+    func configure(name: String,with image: UIImage?,text: String = "", collection images: [String]) {
         userName.text = name
         avatar.imageView.image = image
-        photoCollection = images
+        newsText.text = text
+        photoURL = images
+        
      }
     
     @IBAction func like(_ sender: Any) {
@@ -63,13 +64,16 @@ extension NewsViewCellWithPhoto: UICollectionViewDelegate, UICollectionViewDataS
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        photoCollection.count
+        return photoURL.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoNewsCollection", for: indexPath) as! NewsCollectionViewCell
-        cell.configurate(image: photoCollection[indexPath.row])
+        
+        vkApi().getProfilePhoto(url: photoURL[indexPath.row] ){
+            cell.configurate(image: $0 ?? UIImage())
+        }
         return cell
     }
 
