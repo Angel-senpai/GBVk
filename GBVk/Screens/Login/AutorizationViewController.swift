@@ -14,7 +14,7 @@ import Alamofire
 class AutorizationViewController: UIViewController {
     
 
-    let privateKay = "7479663"
+    let privateKay = "7305836"
     
     
     var webView: WKWebView!
@@ -83,71 +83,7 @@ extension AutorizationViewController: WKNavigationDelegate{
         
  
         
-        /*let queque = DispatchQueue.global(qos: .utility)
-        queque.async {
-            self.vkApi.getFriendList(by: Session.instance.token, hundler: {
-                switch $0{
-                case .success(let users):
-                    let userRep = UsersRepositoryRealm()
-                    users.forEach{ user in
-                            self.vkApi.getProfilePhoto(by: Session.instance.token, ownerId: "\(user.id)"){ response in
-                                switch response{
-                                case .success(let photoArr):
-                                    userRep.addUser(id: user.id,
-                                                    firstName: user.firstName,
-                                                    lastName: user.lastName,
-                                                    city: user.cityName,
-                                                    photoURL: photoArr.photo[1].url)
-                                case .failure:
-                                    break;
-                                }
-                            }
-                    }
-                case .failure:
-                    break;
-                }
-            })
-            /*
-            self.vkApi.getProfilePhoto(by: Session.instance.token, ownerId: Session.instance.userId){ _ in
-               // print($0)
-            }
-            
-            self.vkApi.getPhoto(by: Session.instance.token, ownerId: Session.instance.userId) {
-                switch $0{
-                case .success(let photoes):
-                    photoes.forEach{
-                        $0.photo.forEach{
-                            if $0.type == .p{
-                                 print($0)
-                             }
-                        }
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-            }*/
-            self.vkApi.getUserGroup(by: Session.instance.token,ownerId: Session.instance.userId){
-                switch $0{
-                case .success(let group):
-                    print("success")
-                    break
-                case .failure(let error):
-                   print(error)
-                }
-            }
-            /*
-            self.vkApi.getSearchGroup(by: Session.instance.token,searchString: "Music"){
-                switch $0{
-                case .success(let group):
-                    print("success")
-                   break
-                case .failure(let error):
-                    print(error)
-                }
-            }*/
-        }
-        */
-        //print(vkApi.getPhoto(by: Session.instance.token,ownerId: Session.instance.userId))
+        
         
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

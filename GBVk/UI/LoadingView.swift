@@ -39,7 +39,6 @@ class LoadingView: UIView {
     func configuration(){
         createLoadingViews()
         startAnimation()
-        print(isAnimation)
     }
     
     func createLoadingViews() {

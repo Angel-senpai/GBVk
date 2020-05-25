@@ -2,26 +2,23 @@
 //  NewsViewCell.swift
 //  GBVk
 //
-//  Created by Даниил Мурыгин on 17.12.2019.
-//  Copyright © 2019 Даниил Мурыгин. All rights reserved.
+//  Created by Даниил Мурыгин on 24.05.2020.
+//  Copyright © 2020 Даниил Мурыгин. All rights reserved.
 //
 
 import UIKit
 
 class NewsViewCell: UITableViewCell {
 
-    @IBOutlet weak var userImageView: UIImageView!
+   
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var avatarShadow: CircleShadowImage!
-    @IBOutlet weak var stackView: UIStackView!
-    
-    var userImage: UIImage!
-    
-    func configure(with image: UIImage, collection images: [UIImage]) {
-        self.userImage = image
-        stackView.addSubview(userImageView)
-
-     }
+    @IBOutlet weak var newsTextLabel: UILabel!
+    func configure(name: String,with image: UIImage, text: String) {
+       userName?.text = name
+       avatarShadow?.imageView.image = image
+       newsTextLabel?.text = text
+    }
     
     @IBAction func like(_ sender: Any) {
         (sender as! LikeButton).like()

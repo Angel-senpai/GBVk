@@ -15,7 +15,9 @@ class FriendCell: UITableViewCell  {
     @IBOutlet weak var shadowAvatar: CircleShadowImage!
     
     
-    
+    override func prepareForReuse() {
+        shadowAvatar.imageView.image = UIImage()
+    }
     
 }
 

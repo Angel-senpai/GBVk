@@ -10,11 +10,7 @@ import UIKit
 
 class NewsCollectionViewCell: UICollectionViewCell {
     
-    var image: UIImage!{
-        didSet{
-            photo.image = image
-        }
-    }
+    var loadingView: LoadingView!
     var photo: UIImageView!
     
     override init(frame: CGRect) {
@@ -22,12 +18,17 @@ class NewsCollectionViewCell: UICollectionViewCell {
         photo = UIImageView(frame: self.frame)
         photo.frame.origin = CGPoint(x: 0, y: 0)
         addSubview(photo)
+        loadingView = LoadingView(frame: photo.frame)
+        addSubview(loadingView)
     }
     
+    override func prepareForReuse() {
+        photo.image = UIImage()
+    }
     
     func configurate(image: UIImage) {
-        self.image = image
-
+        loadingView?.removeFromSuperview()
+        self.photo.image = image
     }
     
     required init?(coder: NSCoder) {

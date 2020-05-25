@@ -52,7 +52,7 @@ struct UserResponse: Decodable {
 
 }
 
-struct  ResponseUserData: Decodable  {
+struct ResponseUserData: Decodable  {
     var count: Int
     var items: [UserResponse]
     

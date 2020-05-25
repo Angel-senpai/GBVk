@@ -9,41 +9,48 @@
 import Foundation
 import Alamofire
 
+enum NetworkError: Error {
+    case failedRequest(message: String)
+    case decodableError(message: String)
+    case anotherError
+}
 
 class vkApi {
     
     private let vkURL = "https://api.vk.com/method/"
-    private var networkQ = DispatchQueue.init(label: "networkQ", qos: .background, target: .global())
+    private var networkQ = DispatchQueue.init(label: "networkQ", qos: .userInteractive, target: .global())
+    private var networkQOperation = OperationQueue()
     typealias Out = Swift.Result
     
-    enum NetworkError: Error {
-        case failedRequest(message: String)
-        case decodableError(message: String)
-        case anotherError
+    init(){
+        networkQOperation.qualityOfService = .userInteractive
+        networkQOperation.name = "networkQOperation"
     }
-    
     func serverResponse<T: Decodable>(requestURL: String,
                                       params: Parameters,
                                       completion: @escaping (Out<T, NetworkError>) -> Void){
-        networkQ.async {
-            Alamofire.request(requestURL,
-                              method: .post,
-                              parameters: params)
-                .responseData{ (response) in
-                    
-                    switch response.result{
-                    case .failure(let error):
-                        completion(.failure(NetworkError.failedRequest(message: error.localizedDescription)))
-                    case .success(let data):
-                        do{
-                            let response = try JSONDecoder().decode(T.self, from: data)
-                            completion(.success(response))
-                        }catch{
-                            completion(.failure(.decodableError(message: "ошибка при декодировании")))
-                        }
-                    }
+        let request = Alamofire.request(requestURL,
+                          method: .post,
+                          parameters: params)
+        let operation = DataRequestOperation(request: request)
+        operation.completionBlock = {
+            if let data = operation.data{
+                do{
+                    let response = try JSONDecoder().decode(T.self, from: data)
+                    completion(.success(response))
+                }catch{
+                    completion(.failure(.decodableError(message: "ошибка при декодировании")))
+                }
+            }else{
+                guard let error = operation.error else {
+                    completion(.failure(.anotherError))
+                    return
+                }
+                completion(.failure(error))
             }
         }
+        networkQOperation.addOperation(operation)
+        
     }
     
     func getNews(by token: String,_ startFrom: String = "0",result: @escaping (Out<newsResponseData, NetworkError>) -> ()) {

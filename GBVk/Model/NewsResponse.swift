@@ -45,20 +45,18 @@ struct newsData: Decodable {
         case text
         case attachments
     }
-
-    struct attachmentsData: Decodable {
-        var id: Int?
-        var photo: photoInfo?
-        
-        struct photoInfo: Decodable{
-            var id: Int
-            var photo: [Photo]
-            enum CodingKeys: String, CodingKey {
-                case id
-                case photo = "sizes"
-            }
+}
+struct attachmentsData: Decodable {
+    var id: Int?
+    var photo: photoInfo?
+    
+    struct photoInfo: Decodable{
+        var id: Int
+        var photo: [Photo]
+        enum CodingKeys: String, CodingKey {
+            case id
+            case photo = "sizes"
         }
     }
-    
 }
 
